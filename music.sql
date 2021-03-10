@@ -113,7 +113,7 @@ VALUES
   (8, 3),
   (5, 3);
 
-  -- Display the title of the song, and artist(s) for songs on 'A land of dance'.
+  -- Display the title of the songs, and artists for songs on 'A land of dance'.
   SELECT songs.title, name_of_artist
   FROM artists_songs JOIN songs ON songs.id = artists_songs.song_id
   JOIN artists ON artists.id = artists_songs.artist_id
