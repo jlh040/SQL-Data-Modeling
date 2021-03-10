@@ -116,3 +116,8 @@ VALUES
 
 
 -- Display the name of the flyer, along with their departure time and desination city
+SELECT first_name, last_name, departure, city 
+FROM flights_flyers 
+JOIN flights ON flight_id = flights.id 
+JOIN locations ON to_location_id = locations.id 
+JOIN flyers ON flyer_id = flyers.id;
