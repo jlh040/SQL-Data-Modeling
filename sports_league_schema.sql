@@ -7,8 +7,8 @@ CREATE DATABASE sports_league;
 CREATE TABLE teams (
     id SERIAL PRIMARY KEY,
     name_of_team TEXT UNIQUE NOT NULL,
-    name_of_coach TEXT UNIQUE NOT NULL,
-    stadium TEXT NOT NULL
+    name_of_coach TEXT UNIQUE NOT NULL, -- Can somenone coach more than one team? If so this should be a separate table + FK
+    stadium TEXT NOT NULL -- Same for stadium, this only holds if there's 1-1 relation between team & stadium
 );
 
 CREATE TABLE players (
@@ -23,7 +23,7 @@ CREATE TABLE matches (
     team1_id INT REFERENCES teams,
     team2_id INT REFERENCES teams,
     date DATE NOT NULL,
-    home_team_id INT REFERENCES teams,
+    home_team_id INT REFERENCES teams, -- Isn't this redundant with team1 or team2?
     winning_team_id INT references teams
 );
 
@@ -32,10 +32,10 @@ CREATE TABLE referees (
     name_of_ref TEXT
 );
 
-CREATE TABLE match_referee (
+CREATE TABLE match_referee ( -- Can a match have more than one referee?
     id SERIAL PRIMARY KEY,
     match_id INT REFERENCES matches,
-    referee_id INT REFERENCES referees
+    referee_id INT REFERENCES referees 
 );
 
 CREATE TABLE goals (
@@ -118,7 +118,7 @@ VALUES
 -- List the rankings of the teams by number of wins
 
 SELECT 
-    name_of_team, COUNT(winning_team_id) AS num_of_wins 
+    name_of_team, COUNT(winning_team_id) AS num_of_wins -- You probably want to count match_id instead of winning_team_id
 FROM 
     matches m 
 JOIN 
