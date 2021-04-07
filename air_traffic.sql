@@ -18,7 +18,7 @@ CREATE TABLE airlines (
 
 CREATE TABLE locations (
   id SERIAL PRIMARY KEY,
-  country TEXT NOT NULL,
+  country TEXT NOT NULL, -- This should probably be a separate table
   city TEXT UNIQUE NOT NULL
 );
 
@@ -67,9 +67,9 @@ VALUES
 INSERT INTO locations
   (country, city)
 VALUES
-  ('United States', 'Seattle'),
-  ('United States', 'Washington DC'),
-  ('United States', 'Chicago'),
+  ('United States', 'Seattle'), -- Look here how United States for instance is duplicated several times, that can cause problems
+  ('United States', 'Washington DC'), -- , for instance, someone could write U.S. instead and the application would understand those as two different countries 
+  ('United States', 'Chicago'), -- when the user's intention was the opposite
   ('United States', 'Las Vegas'),
   ('United States', 'Charlotte'),
   ('United States', 'Cedar Rapids'),
