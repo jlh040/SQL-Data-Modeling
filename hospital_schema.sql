@@ -6,17 +6,17 @@ CREATE DATABASE hospital;
 
 CREATE TABLE doctors (
     id SERIAL PRIMARY KEY,
-    name_of_doc TEXT NOT NULL
+    name_of_doc TEXT NOT NULL -- Same comment as in the previous sql (Why "name_of_doc" instead of just "name"?)
 );
 
 CREATE TABLE patients (
     id SERIAL PRIMARY KEY,
-    name_of_patient TEXT NOT NULL
+    name_of_patient TEXT NOT NULL -- Again
 );
 
 CREATE TABLE diseases (
     id SERIAL PRIMARY KEY,
-    name_of_disease TEXT UNIQUE NOT NULL
+    name_of_disease TEXT UNIQUE NOT NULL -- Again
 );
 
 CREATE TABLE diseases_patients (
