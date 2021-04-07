@@ -6,13 +6,13 @@ CREATE DATABASE craigslist;
 
 CREATE TABLE categories (
     id SERIAL PRIMARY KEY,
-    name_of_category TEXT UNIQUE NOT NULL
+    name_of_category TEXT UNIQUE NOT NULL -- I'd leave it simply as "name"... "of_category" is redundant since you're working on categories table
 );
 
 CREATE TABLE region (
     id SERIAL PRIMARY KEY,
-    region_name TEXT NOT NULL,
-    zip_code INT UNIQUE NOT NULL
+    region_name TEXT NOT NULL, -- Same goes here, name is enough, otherwise, your queries will look something like "SELECT region.region_name" instead of "SELECT region.name"
+    zip_code INT UNIQUE NOT NULL -- If you have a situation where you need to use both region.name and categories.name you can always use alias
 );
 
 CREATE TABLE users (
