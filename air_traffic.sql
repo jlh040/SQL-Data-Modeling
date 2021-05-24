@@ -42,13 +42,10 @@ CREATE TABLE flights_flyers (
 INSERT INTO flyers
   (first_name, last_name)
 VALUES
-  ('Jennifer', 'Finch'),
   ('Thadeus', 'Gathercoal'),
   ('Sonja', 'Pauley'),
   ('Jennifer', 'Finch'),
   ('Waneta', 'Skeleton'),
-  ('Thadeus', 'Gathercoal'),
-  ('Berkie', 'Wycliff'),
   ('Alvin', 'Leathes'),
   ('Berkie', 'Wycliff'),
   ('Cory', 'Squibbes');
