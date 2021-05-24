@@ -6,12 +6,12 @@ CREATE DATABASE craigslist;
 
 CREATE TABLE categories (
     id SERIAL PRIMARY KEY,
-    name_of_category TEXT UNIQUE NOT NULL
+    name TEXT UNIQUE NOT NULL
 );
 
 CREATE TABLE regions (
     id SERIAL PRIMARY KEY,
-    region_name TEXT NOT NULL,
+    region TEXT NOT NULL,
     zip_code INT UNIQUE NOT NULL
 );
 
@@ -36,7 +36,7 @@ CREATE TABLE categories_posts (
 );
 
 INSERT INTO
-    categories (name_of_category)
+    categories (name)
 VALUES
     ('JOBS'),
     ('SCHOOL'),
@@ -44,7 +44,7 @@ VALUES
     ('MISC');
 
 INSERT INTO
-    region (region_name, zip_code)
+    regions (region, zip_code)
 VALUES
     ('san diego', 92126),
     ('san diego', 92154),
@@ -83,7 +83,7 @@ VALUES
 
 --Display the titles, text, and categories of the posts made by the user 'bobby99'
 SELECT 
-    title, text, name_of_category 
+    title, text, name
 FROM 
     categories_posts 
 JOIN 
