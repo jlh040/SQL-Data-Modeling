@@ -16,16 +16,16 @@ CREATE TABLE airlines (
   name TEXT UNIQUE NOT NULL
 );
 
+CREATE TABLE countries (
+  id SERIAL PRIMARY KEY,
+  name TEXT NOT NULL
+);
+
 CREATE TABLE locations (
   id SERIAL PRIMARY KEY,
   country_id INT REFERENCES countries(id),
   city TEXT UNIQUE NOT NULL
 );
-
-CREATE TABLE countries (
-  id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL
-)
 
 CREATE TABLE flights (
   id SERIAL PRIMARY KEY,
@@ -44,7 +44,7 @@ CREATE TABLE flights_flyers (
 );
 
 INSERT INTO countries
-  (country)
+  (name)
 VALUES
   ('United States'),
   ('United Kingdom'),
@@ -55,7 +55,7 @@ VALUES
   ('Chile'),
   ('Mexico'),
   ('Morocco'),
-  ('UAE')
+  ('UAE');
 
 INSERT INTO flyers
   (first_name, last_name)
@@ -66,10 +66,13 @@ VALUES
   ('Waneta', 'Skeleton'),
   ('Alvin', 'Leathes'),
   ('Berkie', 'Wycliff'),
-  ('Cory', 'Squibbes');
+  ('Cory', 'Squibbes'),
+  ('Mark', 'Scramble'),
+  ('Jean', 'Grey'),
+  ('Ronald', 'Darber');
 
 INSERT INTO airlines
-  (name_of_airline)
+  (name)
 VALUES
   ('United'),
   ('British Airways'),
