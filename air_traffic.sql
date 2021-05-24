@@ -47,6 +47,7 @@ INSERT INTO countries
   (country)
 VALUES
   ('United States'),
+  ('United Kingdom'),
   ('Japan'),
   ('France'),
   ('China'),
@@ -79,26 +80,26 @@ VALUES
   ('Avianca Brasil');
 
 INSERT INTO locations
-  (country, city)
+  (country_id, city)
 VALUES
-  ('United States', 'Seattle'),
-  ('United States', 'Washington DC'),
-  ('United States', 'Chicago'),
-  ('United States', 'Las Vegas'),
-  ('United States', 'Charlotte'),
-  ('United States', 'Cedar Rapids'),
-  ('United States', 'Los Angeles'),
-  ('United States', 'New Orleans'),
-  ('United States', 'New York'),
-  ('United Kingdom', 'London'),
-  ('Japan', 'Tokyo'),
-  ('France', 'Paris'),
-  ('China', 'Beijing'),
-  ('Brazil', 'Sao Paolo'),
-  ('Chile', 'Santiago'),
-  ('Mexico', 'Mexico City'),
-  ('Morocco', 'Casablanca'),
-  ('UAE', 'Dubai');
+  (1, 'Seattle'),
+  (1, 'Washington DC'),
+  (1, 'Chicago'),
+  (1, 'Las Vegas'),
+  (1, 'Charlotte'),
+  (1, 'Cedar Rapids'),
+  (1, 'Los Angeles'),
+  (1, 'New Orleans'),
+  (1, 'New York'),
+  (2, 'London'),
+  (3, 'Tokyo'),
+  (4, 'Paris'),
+  (5, 'Beijing'),
+  (6, 'Sao Paolo'),
+  (7, 'Santiago'),
+  (8, 'Mexico City'),
+  (9, 'Casablanca'),
+  (10, 'Dubai');
 
 INSERT INTO flights
   (departure, arrival, airline_id, from_location_id, to_location_id)
