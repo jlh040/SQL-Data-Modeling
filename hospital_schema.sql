@@ -6,17 +6,17 @@ CREATE DATABASE hospital;
 
 CREATE TABLE doctors (
     id SERIAL PRIMARY KEY,
-    name_of_doc TEXT NOT NULL
+    name TEXT NOT NULL
 );
 
 CREATE TABLE patients (
     id SERIAL PRIMARY KEY,
-    name_of_patient TEXT NOT NULL
+    name TEXT NOT NULL
 );
 
 CREATE TABLE diseases (
     id SERIAL PRIMARY KEY,
-    name_of_disease TEXT UNIQUE NOT NULL
+    name TEXT UNIQUE NOT NULL
 );
 
 CREATE TABLE diseases_patients (
@@ -32,21 +32,21 @@ CREATE TABLE doctors_patients (
 );
 
 INSERT INTO 
-doctors (name_of_doc)
+doctors (name)
 VALUES
 ('John Wayne'),
 ('Sally Moore'),
 ('Richard Diesel');
 
 INSERT INTO 
-patients (name_of_patient)
+patients (name)
 VALUES
 ('Duane Chapman'),
 ('Robby Leland'),
 ('Lisa Brudi');
 
 INSERT INTO
-diseases (name_of_disease)
+diseases (name)
 VALUES
 ('cancer'),
 ('heart disease'),
@@ -72,6 +72,6 @@ VALUES
 
 
 -- See which patients have which diseases.
-SELECT name_of_patient, name_of_disease
+SELECT patients.name, diseases.name
 FROM diseases_patients JOIN patients ON patient_id = patients.id
 JOIN diseases ON disease_id = diseases.id;
