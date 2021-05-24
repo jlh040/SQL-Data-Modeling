@@ -18,7 +18,7 @@ CREATE TABLE regions (
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username TEXT UNIQUE NOT NULL,
-    pref_region INT REFERENCES region
+    pref_region INT REFERENCES regions
 );
 
 CREATE TABLE posts (
@@ -26,7 +26,7 @@ CREATE TABLE posts (
     title TEXT NOT NULL,
     text TEXT NOT NULL,
     username_id INT REFERENCES users ON DELETE CASCADE,
-    region_id INT REFERENCES region
+    region_id INT REFERENCES regions
 );
 
 CREATE TABLE categories_posts (
