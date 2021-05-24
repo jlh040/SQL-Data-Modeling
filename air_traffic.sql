@@ -22,6 +22,11 @@ CREATE TABLE locations (
   city TEXT UNIQUE NOT NULL
 );
 
+CREATE TABLE countries (
+  id SERIAL PRIMARY KEY,
+  country TEXT NOT NULL
+)
+
 CREATE TABLE flights (
   id SERIAL PRIMARY KEY,
   departure TIMESTAMP NOT NULL,
@@ -38,6 +43,18 @@ CREATE TABLE flights_flyers (
   seat TEXT NOT NULL 
 );
 
+INSERT INTO countries
+  (country)
+VALUES
+  ('United States'),
+  ('Japan'),
+  ('France'),
+  ('China'),
+  ('Brazil'),
+  ('Chile'),
+  ('Mexico'),
+  ('Morocco'),
+  ('UAE')
 
 INSERT INTO flyers
   (first_name, last_name)
