@@ -4,10 +4,15 @@ CREATE DATABASE sports_league;
 
 \c sports_league;
 
+CREATE TABLE stadiums (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL
+);
+
 CREATE TABLE teams (
     id SERIAL PRIMARY KEY,
     name TEXT UNIQUE NOT NULL,
-    home_stadium_id INT REFERENCES stadium(id)
+    home_stadium_id INT REFERENCES stadiums(id)
 );
 
 CREATE TABLE coaches (
@@ -15,15 +20,15 @@ CREATE TABLE coaches (
     name TEXT NOT NULL
 );
 
-CREATE TABLE stadiums (
-    id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL
-);
-
 CREATE TABLE players (
     id SERIAL PRIMARY KEY,
     first_name TEXT NOT NULL,
-    last_name TEXT,
+    last_name TEXT
+);
+
+CREATE TABLE referees (
+    id SERIAL PRIMARY KEY,
+    name TEXT
 );
 
 CREATE TABLE coaches_teams (
@@ -48,11 +53,6 @@ CREATE TABLE matches (
     date DATE NOT NULL
 );
 
-CREATE TABLE referees (
-    id SERIAL PRIMARY KEY,
-    name TEXT
-);
-
 CREATE TABLE goals (
     id SERIAL PRIMARY KEY,
     scoring_player_id INT REFERENCES players,
@@ -67,7 +67,7 @@ VALUES
     ('birmingham stadium'),
     ('O2 arena'),
     ('UK field'),
-    ('barcelona')
+    ('barcelona');
 
 INSERT INTO teams
     (name, home_stadium_id)
@@ -125,7 +125,7 @@ VALUES
 -- List the rankings of the teams by number of wins
 
 SELECT 
-    name_of_team, COUNT(winning_team_id) AS num_of_wins 
+    t.name, COUNT(m.id) AS num_of_wins 
 FROM 
     matches m 
 JOIN 
@@ -133,6 +133,6 @@ JOIN
 ON 
     m.winning_team_id = t.id 
 GROUP BY 
-    name_of_team, winning_team_id 
+    t.name 
 ORDER BY 
     num_of_wins DESC; 
