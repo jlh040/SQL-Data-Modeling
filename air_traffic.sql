@@ -13,7 +13,7 @@ CREATE TABLE flyers
 
 CREATE TABLE airlines (
   id SERIAL PRIMARY KEY,
-  name_of_airline TEXT UNIQUE NOT NULL
+  name TEXT UNIQUE NOT NULL
 );
 
 CREATE TABLE locations (
@@ -24,7 +24,7 @@ CREATE TABLE locations (
 
 CREATE TABLE countries (
   id SERIAL PRIMARY KEY,
-  country TEXT NOT NULL
+  name TEXT NOT NULL
 )
 
 CREATE TABLE flights (
