@@ -6,9 +6,18 @@ CREATE DATABASE sports_league;
 
 CREATE TABLE teams (
     id SERIAL PRIMARY KEY,
-    name_of_team TEXT UNIQUE NOT NULL,
-    name_of_coach TEXT UNIQUE NOT NULL,
-    stadium TEXT NOT NULL
+    name TEXT UNIQUE NOT NULL,
+    home_stadium_id INT REFERENCES stadium(id)
+);
+
+CREATE TABLE coaches (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL
+);
+
+CREATE TABLE stadium (
+    id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL
 );
 
 CREATE TABLE players (
