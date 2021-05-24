@@ -9,7 +9,7 @@ CREATE TABLE categories (
     name_of_category TEXT UNIQUE NOT NULL
 );
 
-CREATE TABLE region (
+CREATE TABLE regions (
     id SERIAL PRIMARY KEY,
     region_name TEXT NOT NULL,
     zip_code INT UNIQUE NOT NULL
