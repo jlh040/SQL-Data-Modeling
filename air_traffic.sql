@@ -18,7 +18,7 @@ CREATE TABLE airlines (
 
 CREATE TABLE locations (
   id SERIAL PRIMARY KEY,
-  country TEXT NOT NULL,
+  country_id INT REFERENCES countries(id),
   city TEXT UNIQUE NOT NULL
 );
 
