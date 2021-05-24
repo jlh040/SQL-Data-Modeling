@@ -15,7 +15,7 @@ CREATE TABLE coaches (
     name TEXT NOT NULL
 );
 
-CREATE TABLE stadium (
+CREATE TABLE stadiums (
     id SERIAL PRIMARY KEY,
     name TEXT NOT NULL
 );
@@ -24,6 +24,17 @@ CREATE TABLE players (
     id SERIAL PRIMARY KEY,
     first_name TEXT NOT NULL,
     last_name TEXT,
+);
+
+CREATE TABLE coaches_teams (
+    id SERIAL PRIMARY KEY,
+    coach_id INT REFERENCES coaches,
+    team_id INT REFERENCES teams
+);
+
+CREATE TABLE players_teams (
+    id SERIAL PRIMARY KEY,
+    player_id INT REFERENCES players,
     team_id INT REFERENCES teams
 );
 
@@ -31,20 +42,15 @@ CREATE TABLE matches (
     id SERIAL PRIMARY KEY,
     team1_id INT REFERENCES teams,
     team2_id INT REFERENCES teams,
-    date DATE NOT NULL,
-    home_team_id INT REFERENCES teams,
-    winning_team_id INT references teams
+    stadium_id INT REFERENCES stadiums,
+    referee_id INT REFERENCES referees,
+    winning_team_id INT references teams,
+    date DATE NOT NULL
 );
 
 CREATE TABLE referees (
     id SERIAL PRIMARY KEY,
-    name_of_ref TEXT
-);
-
-CREATE TABLE match_referee (
-    id SERIAL PRIMARY KEY,
-    match_id INT REFERENCES matches,
-    referee_id INT REFERENCES referees
+    name TEXT
 );
 
 CREATE TABLE goals (
@@ -53,39 +59,38 @@ CREATE TABLE goals (
     match_id INT REFERENCES matches
 );
 
-INSERT INTO
-    teams (name_of_team, name_of_coach, stadium)
+INSERT INTO stadiums
+    (name)
 VALUES
-    ('liverpool', 'john mayor', 'wembley stadium'),
-    ('Hudson FC', 'bobby wagner', 'england stadium'),
-    ('sunderland', 'ricky bobby', 'birmingham stadium'),
-    ('chelsea', 'matt patricia', 'O2 arena'),
-    ('watford', 'arnold palmer', 'UK field'),
-    ('spain united', 'mark andrews', 'barcelona');
+    ('wembley stadium'),
+    ('england stadium'),
+    ('birmingham stadium'),
+    ('O2 arena'),
+    ('UK field'),
+    ('barcelona')
+
+INSERT INTO teams
+    (name, home_stadium_id)
+VALUES
+    ('liverpool', 1),
+    ('Hudson FC', 2),
+    ('sunderland', 3),
+    ('chelsea', 4),
+    ('watford', 5),
+    ('spain united', 6);
 
 INSERT INTO
-    players (first_name, last_name, team_id)
+    players (first_name, last_name)
 VALUES
-    ('bob', 'diesel', 1),
-    ('christiano', 'ronaldo', 2),
-    ('mesut', 'ozil', 5),
-    ('david', 'beckham', 4),
-    ('john', 'mayer', 3),
-    ('warnold', 'rippen', 2);
+    ('bob', 'diesel'),
+    ('christiano', 'ronaldo'),
+    ('mesut', 'ozil'),
+    ('david', 'beckham'),
+    ('john', 'mayer'),
+    ('warnold', 'rippen');
 
 INSERT INTO
-    matches (team1_id, team2_id, date, home_team_id, winning_team_id)
-VALUES
-    (1, 3, '2001-10-02', 1, 3),
-    (1, 3, '2001-10-09', 2, 1),
-    (4, 2, '2001-10-16', 4, 2),
-    (6, 3, '2001-10-23', 6, 3),
-    (5, 4, '2001-10-31', 5, 5),
-    (2, 3, '2001-10-31', 3, 2),
-    (6, 4, '2001-11-07', 4, 4);
-
-INSERT INTO
-    referees (name_of_ref)
+    referees (name)
 VALUES
     ('andrew wentworth'),
     ('travis fickle'),
@@ -94,22 +99,15 @@ VALUES
     ('evan ringwald');
 
 INSERT INTO
-    match_referee (match_id, referee_id)
+    matches (team1_id, team2_id, stadium_id, referee_id, winning_team_id, date)
 VALUES
-    (1, 1),
-    (1, 4),
-    (2, 5),
-    (2, 4),
-    (3, 3),
-    (3, 1),
-    (4, 4),
-    (4, 2),
-    (5, 3),
-    (5, 5),
-    (6, 1),
-    (6, 2),
-    (7, 5),
-    (7, 3);
+    (1, 3, 1, 4, 1, '2001-10-02'),
+    (1, 3, 3, 5, 3, '2001-10-09'),
+    (4, 2, 4, 2, 4, '2001-10-16'),
+    (6, 3, 6, 3, 6, '2001-10-23'),
+    (5, 4, 5, 1, 4, '2001-10-31'),
+    (2, 3, 2, 1, 2, '2001-10-31'),
+    (6, 4, 4, 5, 6, '2001-11-07');
 
 INSERT INTO
     goals (match_id, scoring_player_id)
